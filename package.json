@@ -1,29 +1,40 @@
 {
-    "name": "must-see-movies",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "dev": "parcel src/index.html",
-        "lint": "tslint --project .",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "@types/reach__router": "^1.2.6",
-        "@types/react": "^16.9.11",
-        "@types/react-dom": "^16.9.4",
-        "parcel-bundler": "^1.12.4",
-        "prettier": "^1.19.1",
-        "tslint": "^5.20.1",
-        "tslint-config-prettier": "^1.18.0",
-        "tslint-react": "^4.1.0",
-        "typescript": "^3.7.2"
-    },
-    "dependencies": {
-        "react": "^16.11.0",
-        "react-dom": "^16.11.0"
-    }
+	"name": "must-see-movies",
+	"version": "1.0.0",
+	"description": "",
+	"main": "src/App.tsx",
+	"scripts": {
+		"dev": "parcel src/index.html",
+		"build": "parcel build --public-url ./dist/ src/index.html",
+		"start": "npm -s run build && babel-node server/index.js",
+		"lint": "tslint --project .",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/core": "^7.4.3",
+		"@babel/node": "^7.2.2",
+		"@babel/plugin-proposal-class-properties": "^7.4.0",
+		"@babel/preset-env": "^7.4.3",
+		"@babel/preset-react": "^7.0.0",
+		"@types/reach__router": "^1.2.6",
+		"@types/react": "^16.9.11",
+		"@types/react-dom": "^16.9.4",
+		"cross-env": "^5.2.0",
+		"parcel-bundler": "^1.12.4",
+		"prettier": "^1.19.1",
+		"tslint": "^5.20.1",
+		"tslint-config-prettier": "^1.18.0",
+		"tslint-react": "^4.1.0",
+		"typescript": "^3.7.2"
+	},
+	"dependencies": {
+		"@reach/router": "^1.2.1",
+		"core-util-is": "^1.0.2",
+		"express": "^4.17.1",
+		"react": "^16.11.0",
+		"react-dom": "^16.11.0"
+	}
 }
