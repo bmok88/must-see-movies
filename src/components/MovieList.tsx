@@ -10,14 +10,12 @@ interface MovieList {
 
 const MovieList: FunctionComponent<MovieList> = () => {
     const [movies, setMovies] = useState([]);
-    console.log(movies);
 
     const fetchMovies = async () => {
-        const api =
-            'https://api.themoviedb.org/3/movie/popular?api_key=349985f5f59407dc326ef387df713eb2&language=en-US&page=1';
+        const api = 'http://localhost:3000/popular';
         const response = await fetch(api);
         const json = await response.json();
-
+        console.log(json);
         setMovies(json.results);
     };
 

@@ -1,41 +1,39 @@
 import express from 'express';
-import React from 'react';
-import { renderToNodeStream } from 'react-dom/server';
-import { ServerLocation } from '@reach/router';
-import fs from 'fs';
+import bodyParser from 'body-parser';
+import axios from 'axios';
+// import React from 'react';
+// import { renderToNodeStream } from 'react-dom/server';
+// import { ServerLocation } from '@reach/router';
+// import fs from 'fs';
 // import App from '../src/App';
 const apiKey = '349985f5f59407dc326ef387df713eb2';
 
-const PORT = process.env.PORT || 3000;
-
-const html = fs.readFileSync('dist/index.html').toString();
-
-const htmlParts = html.split('React App');
-
 const app = express();
 
-app.use('/dist', express.static('dist'));
-// app.use((req, res) => {
-//     res.write(htmlParts[0]);
-//     const reactMarkup = (
-//         <ServerLocation url={req.url}>
-//             <App />
-//         </ServerLocation>
-//     );
-//     const stream = renderToNodeStream(reactMarkup);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-//     stream.pipe(res, { end: false });
-//     stream.on('end', () => {
-//         res.write(htmlParts[1]);
-//         res.end();
-//     });
-// });
-// "proxy": "http://localhost:3000",
-const api = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
-app.get('/', (req, res) => {
-    console.log('hey');
-    return res.JSON([{ id: 1 }]);
+app.use('/dist', express.static('dist'));
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
 });
+
+const makeGetRequest = async endPoint => {
+    const url = `https://api.themoviedb.org/3/movie${endPoint}?api_key=${apiKey}`;
+    const response = await axios.get(url);
+
+    return response.data;
+};
+
+app.get('/popular', (req, res) => {
+    makeGetRequest(req.url)
+        .then(result => res.send(result))
+        .catch(error => res.status(error.response.status).send(error));
+});
+
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     console.log('Listening on port ' + PORT);
