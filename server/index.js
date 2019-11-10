@@ -31,11 +31,12 @@ app.use('/dist', express.static('dist'));
 //     });
 // });
 // "proxy": "http://localhost:3000",
-app.get('/api/customers', (req, res) => {
-	console.log('hey');
-	res.JSON([{ id: 1 }]);
+const api = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
+app.get('/', (req, res) => {
+    console.log('hey');
+    return res.JSON([{ id: 1 }]);
 });
 
 app.listen(PORT, () => {
-	console.log('Listening on port ' + PORT);
+    console.log('Listening on port ' + PORT);
 });
