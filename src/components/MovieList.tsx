@@ -1,13 +1,20 @@
-import React, { FunctionComponent, useState, useEffect } from 'react';
-import Movie, { MovieType } from './Movie';
-import SearchBar from './SearchBar';
-
+/** @jsx jsx */
+import { FunctionComponent, useState, useEffect } from 'react';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import { css, jsx } from '@emotion/core';
+
+import Movie, { MovieType } from './Movie';
+import SearchBar from './SearchBar';
 
 interface MovieList {
     movies: MovieType[];
 }
+
+const movieListStyle = css({
+    display: 'grid',
+    gridTemplateColumns: 'repeat(4, 1fr)'
+});
 
 const MovieList: FunctionComponent<any> = () => {
     const [movies, setMovies] = useState([]);
@@ -44,11 +51,13 @@ const MovieList: FunctionComponent<any> = () => {
     }, [searchTerm]);
 
     return (
-        <div className="movie-container">
+        <div>
             <SearchBar updateSearchTerm={updateSearchTerm} />
-            {movies.map((movie: MovieType) => (
-                <Movie key={movie.id} {...movie} />
-            ))}
+            <div css={movieListStyle}>
+                {movies.map((movie: MovieType) => (
+                    <Movie key={movie.id} {...movie} />
+                ))}
+            </div>
         </div>
     );
 };

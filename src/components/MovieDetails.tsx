@@ -7,8 +7,17 @@ class MovieDetails extends React.Component<
 > {
     state = {
         loading: true,
-        name: '',
-        posterPath: ''
+        title: '',
+        posterPath: '',
+        homepage: '',
+        overview: '',
+        releaseDate: '',
+        boxOffice: 0,
+        runtime: 0,
+        rating: 0,
+        votes: 0,
+        genres: [],
+        productionCompanies: []
     };
 
     componentDidMount() {
@@ -19,14 +28,37 @@ class MovieDetails extends React.Component<
         const api = `http://localhost:3000/movie/details/${this.props.id}`;
         const response = await fetch(api);
         const json = await response.json();
+        console.log(json);
 
-        console.log(json.results);
+        this.setState({
+            loading: false,
+            title: json.title,
+            posterPath: json.poster_path,
+            homepage: json.homepage,
+            overview: json.overview,
+            releaseDate: json.release_date,
+            boxOffice: json.revenue,
+            runtime: json.runtime + 'minutes',
+            rating: json.vote_Average + '/10',
+            votes: json.vote_count,
+            genres: json.genres,
+            productionCompanies: json.production_companies
+        });
     };
 
     render() {
-        const { name, posterPath } = this.state;
+        const { loading, title, posterPath } = this.state;
 
-        return <Poster url={posterPath} alt={name} size={'w342'} />;
+        if (loading) {
+            return <h1>Fetching movie details...</h1>;
+        }
+
+        return (
+            <div className="movie-details-container">
+                <Poster url={posterPath} alt={title} size={'w342'} />
+                <div className="details-container"></div>
+            </div>
+        );
     }
 }
 

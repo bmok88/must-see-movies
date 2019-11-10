@@ -1,13 +1,14 @@
-import React, { FunctionComponent } from 'react';
+/** @jsx jsx */
+import { FunctionComponent } from 'react';
+import { css, jsx } from '@emotion/core';
 
-// interface SearchProps {
-//     setSearchTerm: any;
-// }
+const searchBarStyle = css({
+    height: '40px'
+});
 
 const SearchBar: FunctionComponent<any> = ({ updateSearchTerm }) => {
     return (
-        <label htmlFor="movieName">
-            Movie
+        <label css={searchBarStyle} htmlFor="movieName">
             <input
                 id="movieName"
                 type="text"

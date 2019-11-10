@@ -1,5 +1,9 @@
-import React, { FunctionComponent } from 'react';
+/** @jsx jsx */
+import { FunctionComponent } from 'react';
 import { Link } from '@reach/router';
+
+import styles from '../styles';
+import { css, jsx } from '@emotion/core';
 
 import Poster from './Poster';
 
@@ -24,9 +28,13 @@ const Movie: FunctionComponent<MovieType> = props => {
     const { id, poster_path, title } = props;
 
     return (
-        <Link to={`/details/${id}`}>
+        <Link to={`/details/${id}`} css={styles.Link}>
             <Poster url={poster_path} alt={title} size={'w185'} />
-            <div className="movie-info">
+            <div
+                css={css`
+                    text-decoration: none;
+                `}
+            >
                 <h1>{title}</h1>
             </div>
         </Link>
