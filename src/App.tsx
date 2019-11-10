@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from '@reach/router';
+import { Router, Link } from '@reach/router';
 
 import MovieList from './components/MovieList';
+import MovieDetails from './components/MovieDetails';
 
 const App = () => {
     return (
@@ -10,7 +11,10 @@ const App = () => {
             <header>
                 <Link to="/">Must See Movies</Link>
             </header>
-            <MovieList />
+            <Router>
+                <MovieList path="/" />
+                <MovieDetails path="/details/:id" />
+            </Router>
         </div>
     );
 };

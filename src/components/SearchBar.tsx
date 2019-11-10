@@ -1,23 +1,19 @@
-import React, { useState, FunctionComponent } from 'react';
-import { RouteComponentProps } from '@reach/router';
+import React, { FunctionComponent } from 'react';
 
-interface SearchProps {
-    setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
-}
+// interface SearchProps {
+//     setSearchTerm: any;
+// }
 
-const SearchBar: FunctionComponent<SearchProps> = ({ setSearchTerm }) => {
-    const [movieName, setMovieName] = useState('');
-
+const SearchBar: FunctionComponent<any> = ({ updateSearchTerm }) => {
     return (
         <label htmlFor="movieName">
             Movie
             <input
                 id="movieName"
                 type="text"
-                value={movieName}
                 placeholder="Search for a movie..."
-                onChange={e => setMovieName(e.target.value)}
-                onBlur={e => setMovieName(e.target.value)}
+                onChange={e => updateSearchTerm(e.target.value)}
+                onBlur={e => updateSearchTerm(e.target.value)}
             />
         </label>
     );

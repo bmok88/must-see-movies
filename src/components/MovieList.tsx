@@ -10,7 +10,6 @@ interface MovieList {
 }
 
 const MovieList: FunctionComponent<any> = () => {
-    const [isSearch, toggleIsSearch] = useState(false);
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -23,6 +22,7 @@ const MovieList: FunctionComponent<any> = () => {
     };
 
     const searchMovies = async () => {
+        console.log(searchTerm);
         const api = `http://localhost:3000/search/movie/${searchTerm}`;
 
         const response = await fetch(api);
@@ -31,17 +31,21 @@ const MovieList: FunctionComponent<any> = () => {
         setMovies(json.results);
     };
 
+    const updateSearchTerm = (newSearchTerm: string) => {
+        setSearchTerm(newSearchTerm);
+    };
+
     useEffect(() => {
-        if (isSearch) {
+        if (searchTerm.length) {
             searchMovies();
         } else {
             fetchPopularMovies();
         }
-    }, []);
+    }, [searchTerm]);
 
     return (
         <div className="movie-container">
-            <SearchBar setSearchTerm={setSearchTerm} />
+            <SearchBar updateSearchTerm={updateSearchTerm} />
             {movies.map((movie: MovieType) => (
                 <Movie key={movie.id} {...movie} />
             ))}

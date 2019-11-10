@@ -1,6 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { Link } from '@reach/router';
 
+import Poster from './Poster';
+
 export interface MovieType {
     adult: boolean;
     backdrop_path: string;
@@ -21,12 +23,7 @@ export interface MovieType {
 const Movie: FunctionComponent<MovieType> = props => {
     return (
         <Link to="/">
-            <div className="poster-container">
-                <img
-                    src={`http://image.tmdb.org/t/p/w185${props.poster_path}`}
-                    alt={props.title}
-                />
-            </div>
+            <Poster url={props.poster_path} alt={props.title} size={'w185'} />
             <div className="movie-info">
                 <h1>{props.title}</h1>
             </div>
