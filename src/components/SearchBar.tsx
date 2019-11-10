@@ -4,11 +4,14 @@ import { RouteComponentProps } from '@reach/router';
 const SearchBar: FunctionComponent<RouteComponentProps> = () => {
     const [movie, setMovie] = useState('');
 
-    async function searchMovie() {
-        const all = fetch('/');
-        await all;
-        console.log(all);
-    }
+    const searchMovie = async () => {
+        const api = `http://localhost:3000/search/movie/${movie}`;
+
+        const response = await fetch(api);
+        const json = await response.json();
+        console.log(movie);
+        console.log(json.results);
+    };
 
     // useEffect(movie => {
     //     setMovie(movie);

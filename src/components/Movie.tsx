@@ -19,7 +19,6 @@ export interface MovieType {
 }
 
 const Movie: FunctionComponent<MovieType> = props => {
-    console.log(props);
     return (
         <Link to="/">
             <div className="poster-container">

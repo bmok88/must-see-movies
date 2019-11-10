@@ -12,10 +12,10 @@ const MovieList: FunctionComponent<MovieList> = () => {
     const [movies, setMovies] = useState([]);
 
     const fetchMovies = async () => {
-        const api = 'http://localhost:3000/popular';
+        const api = 'http://localhost:3000/movie/popular';
         const response = await fetch(api);
         const json = await response.json();
-        console.log(json);
+
         setMovies(json.results);
     };
 

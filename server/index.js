@@ -6,7 +6,8 @@ import axios from 'axios';
 // import { ServerLocation } from '@reach/router';
 // import fs from 'fs';
 // import App from '../src/App';
-const apiKey = '349985f5f59407dc326ef387df713eb2';
+const api = 'https://api.themoviedb.org/3';
+const apiKey = '?api_key=349985f5f59407dc326ef387df713eb2';
 
 const app = express();
 
@@ -20,16 +21,30 @@ app.use((req, res, next) => {
     next();
 });
 
-const makeGetRequest = async endPoint => {
-    const url = `https://api.themoviedb.org/3/movie${endPoint}?api_key=${apiKey}`;
+const makeGetRequest = async (endPoint, queryParam = '') => {
+    console.log(endPoint, queryParam);
+    const url = `https://api.themoviedb.org/3${endPoint}?api_key=${apiKey}${queryParam}`;
+    console.log(url);
     const response = await axios.get(url);
 
     return response.data;
 };
 
-app.get('/popular', (req, res) => {
-    makeGetRequest(req.url)
-        .then(result => res.send(result))
+app.get('/movie/popular', (req, res) => {
+    const url = `${api}${req.url}${apiKey}`;
+
+    axios
+        .get(url)
+        .then(result => res.send(result.data))
+        .catch(error => res.status(error.response.status).send(error));
+});
+
+app.get('/search/movie/:movie', (req, res) => {
+    const url = `${api}/search/movie${apiKey}&query=${req.params.movie}`;
+
+    axios
+        .get(url)
+        .then(result => res.send(result.data))
         .catch(error => res.status(error.response.status).send(error));
 });
 
