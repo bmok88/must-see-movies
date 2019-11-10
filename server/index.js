@@ -21,31 +21,29 @@ app.use((req, res, next) => {
     next();
 });
 
-const makeGetRequest = async (endPoint, queryParam = '') => {
-    console.log(endPoint, queryParam);
-    const url = `https://api.themoviedb.org/3${endPoint}?api_key=${apiKey}${queryParam}`;
-    console.log(url);
-    const response = await axios.get(url);
-
-    return response.data;
+const makeGetRequest = (url, res) => {
+    axios
+        .get(url)
+        .then(result => res.send(result.data))
+        .catch(error => res.status(error.response.status).send(error));
 };
 
 app.get('/movie/popular', (req, res) => {
     const url = `${api}${req.url}${apiKey}`;
 
-    axios
-        .get(url)
-        .then(result => res.send(result.data))
-        .catch(error => res.status(error.response.status).send(error));
+    makeGetRequest(url, res);
 });
 
 app.get('/search/movie/:movie', (req, res) => {
     const url = `${api}/search/movie${apiKey}&query=${req.params.movie}`;
 
-    axios
-        .get(url)
-        .then(result => res.send(result.data))
-        .catch(error => res.status(error.response.status).send(error));
+    makeGetRequest(url, res);
+});
+
+app.get('/movie/details/:movieId', (req, res) => {
+    const url = `${api}/movie/${req.params.movieId}${apiKey}`;
+
+    makeGetRequest(url, res);
 });
 
 const PORT = process.env.PORT || 3000;
