@@ -21,11 +21,13 @@ export interface MovieType {
 }
 
 const Movie: FunctionComponent<MovieType> = props => {
+    const { id, poster_path, title } = props;
+
     return (
-        <Link to="/">
-            <Poster url={props.poster_path} alt={props.title} size={'w185'} />
+        <Link to={`/details/${id}`}>
+            <Poster url={poster_path} alt={title} size={'w185'} />
             <div className="movie-info">
-                <h1>{props.title}</h1>
+                <h1>{title}</h1>
             </div>
         </Link>
     );
