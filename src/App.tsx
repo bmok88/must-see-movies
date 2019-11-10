@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from '@reach/router';
 
-import SearchBar from './components/SearchBar';
 import MovieList from './components/MovieList';
 
 const App = () => {
@@ -11,7 +10,6 @@ const App = () => {
             <header>
                 <Link to="/">Must See Movies</Link>
             </header>
-            <SearchBar />
             <MovieList />
         </div>
     );

@@ -1,11 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import axios from 'axios';
-// import React from 'react';
-// import { renderToNodeStream } from 'react-dom/server';
-// import { ServerLocation } from '@reach/router';
-// import fs from 'fs';
-// import App from '../src/App';
+
 const api = 'https://api.themoviedb.org/3';
 const apiKey = '?api_key=349985f5f59407dc326ef387df713eb2';
 

@@ -1,45 +1,25 @@
-import React, { useState, FunctionComponent, useEffect } from 'react';
+import React, { useState, FunctionComponent } from 'react';
 import { RouteComponentProps } from '@reach/router';
 
-const SearchBar: FunctionComponent<RouteComponentProps> = () => {
-    const [movie, setMovie] = useState('');
+interface SearchProps {
+    setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+}
 
-    const searchMovie = async () => {
-        const api = `http://localhost:3000/search/movie/${movie}`;
-
-        const response = await fetch(api);
-        const json = await response.json();
-        console.log(movie);
-        console.log(json.results);
-    };
-
-    // useEffect(movie => {
-    //     setMovie(movie);
-    //     // return () => {
-    //     //     cleanup
-    //     // };
-    // }, [movie]);
+const SearchBar: FunctionComponent<SearchProps> = ({ setSearchTerm }) => {
+    const [movieName, setMovieName] = useState('');
 
     return (
-        <form
-            onSubmit={e => {
-                e.preventDefault();
-                searchMovie();
-            }}
-        >
-            <label htmlFor="movie">
-                Movie
-                <input
-                    id="movie"
-                    type="text"
-                    value={movie}
-                    placeholder="Search for a movie..."
-                    onChange={e => setMovie(e.target.value)}
-                    onBlur={e => setMovie(e.target.value)}
-                />
-            </label>
-            <button>Search</button>
-        </form>
+        <label htmlFor="movieName">
+            Movie
+            <input
+                id="movieName"
+                type="text"
+                value={movieName}
+                placeholder="Search for a movie..."
+                onChange={e => setMovieName(e.target.value)}
+                onBlur={e => setMovieName(e.target.value)}
+            />
+        </label>
     );
 };
 
