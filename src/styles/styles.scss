@@ -94,3 +94,45 @@ input[type='text'],
 .invert-color {
     filter: brightness(0) invert(1);
 }
+
+.status-message {
+    font-size: 20px;
+    margin-top: 16px;
+}
+
+// .relative-position {
+//     position: relative;
+// }
+
+.dropdown {
+    margin-left: 24px;
+    width: 180px;
+    .dropdown-toggle {
+        height: 40px;
+        border: none;
+        background-color: hsl(209, 23%, 22%);
+        &:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+        &:focus {
+            outline: none;
+            background-color: hsl(209, 23%, 22%);
+            box-shadow: none;
+        }
+        &:active {
+            background-color: hsl(209, 23%, 22%);
+        }
+    }
+    .dropdown-menu.show {
+        right: 64px;
+        width: 200px;
+        padding: 8px 0;
+        li {
+            cursor: pointer;
+            padding: 4px 8px 0 8px;
+            &:hover {
+                background-color: #cbd5e0;
+            }
+        }
+    }
+}

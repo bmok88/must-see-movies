@@ -150,7 +150,6 @@ class MovieDetails extends React.Component<
                             </span>
                         </div>
                     </div>
-
                     <div className="medium-padding">{overview}</div>
                     <div className="more-info flex">
                         <div

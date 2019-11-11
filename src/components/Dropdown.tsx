@@ -1,17 +1,22 @@
 /** @jsx jsx */
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState, useEffect } from 'react';
 
 import { css, jsx } from '@emotion/core';
 
 interface DropdownProps {
-    data: { id: number; name: string }[];
+    keyName: string;
+    data: any[];
+    selectDropdownItem: any;
     allCheckbox?: boolean;
 }
 
 const Dropdown: FunctionComponent<DropdownProps> = ({
+    keyName,
     data,
-    allCheckbox = true
+    selectDropdownItem
 }) => {
+    const [selection, setSelection] = useState('All');
+
     return (
         <div className="dropdown">
             <button
@@ -22,11 +27,19 @@ const Dropdown: FunctionComponent<DropdownProps> = ({
                 aria-haspopup="true"
                 aria-expanded="false"
             >
-                Dropdown button
+                {selection}
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                {data.map(({ id, name }) => (
-                    <li key={id}>{name}</li>
+                {data.map(data => (
+                    <li
+                        key={data.id}
+                        onClick={() => {
+                            setSelection(data[keyName]);
+                            selectDropdownItem(data);
+                        }}
+                    >
+                        {data[keyName]}
+                    </li>
                 ))}
             </ul>
         </div>
