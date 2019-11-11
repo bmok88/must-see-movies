@@ -5,15 +5,19 @@ research on the next movie they want to see.
 
 # Installation
 
-`npmi`
+Clone this repo and open a new terminal window and cd into the project
+directory.
+
+Run `npm i`
 
 # Usage
 
-`npm run dev:client` to run the client
+Type `npm run dev:client` to run the client
 
 Open localhost:1234 to view the client
 
-`npm run dev:server` to run the server on localhost:3000
+Open a new terminal tab and type `npm run dev:server` to run the server on
+localhost:3000
 
 # Core features
 
