@@ -57,7 +57,6 @@ class MovieDetails extends React.Component<
         const api = `http://localhost:3000/movie/details/${this.props.id}`;
         const response = await fetch(api);
         const json = await response.json();
-        console.log(json);
 
         this.setState({
             loading: false,

@@ -42,8 +42,8 @@ const MovieList: FunctionComponent<any> = () => {
         const json = await response.json();
 
         setLoading(false);
-        setMovies(json.results);
         setAllMovies(json.results);
+        filterMoviesByGenre(json.results, currentGenre);
     };
 
     const searchMovies = async () => {
@@ -53,8 +53,8 @@ const MovieList: FunctionComponent<any> = () => {
         const json = await response.json();
 
         setLoading(false);
-        setMovies(json.results);
         setAllMovies(json.results);
+        filterMoviesByGenre(json.results, currentGenre);
     };
 
     const fetchGenres = async () => {
@@ -62,24 +62,25 @@ const MovieList: FunctionComponent<any> = () => {
         const response = await fetch(api);
         const json = await response.json();
         const newGenres = [...genres, ...json.genres];
-        console.log(newGenres);
+
         setGenres(newGenres);
     };
 
-    const updateSearchTerm = (newSearchTerm: string) => {
+    const updateSearchTerm = (newSearchTerm: string) =>
         setSearchTerm(newSearchTerm);
+
+    const updateCurrentGenre = (genre: Genre) => {
+        setCurrentGenre(genre);
+        filterMoviesByGenre(allMovies, genre);
     };
 
-    const filterMoviesByGenre = (genre: Genre) => {
-        const filteredMovies = allMovies.filter((movie: any) =>
+    const filterMoviesByGenre = (movies: MovieList[], genre: Genre) => {
+        const filteredMovies = movies.filter((movie: any) =>
             movie['genre_ids'].some(
                 (id: string) => id === genre.id || genre.id === 'All'
             )
         );
-        setCurrentGenre(genre);
-        console.log(movies);
-        console.log(allMovies);
-        console.log(filteredMovies);
+
         setMovies(filteredMovies);
     };
 
@@ -102,17 +103,11 @@ const MovieList: FunctionComponent<any> = () => {
             <div>
                 <div className="flex">
                     <SearchBar updateSearchTerm={updateSearchTerm} />
-                    <div
-                        css={css`
-                            flex: 1;
-                        `}
-                    >
-                        <Dropdown
-                            keyName="name"
-                            data={genres}
-                            selectDropdownItem={filterMoviesByGenre}
-                        />
-                    </div>
+                    <Dropdown
+                        keyName="name"
+                        data={genres}
+                        selectDropdownItem={updateCurrentGenre}
+                    />
                 </div>
                 <h1 className="status-message">Loading...</h1>
             </div>
@@ -123,17 +118,11 @@ const MovieList: FunctionComponent<any> = () => {
         <div>
             <div className="flex">
                 <SearchBar updateSearchTerm={updateSearchTerm} />
-                <div
-                    css={css`
-                        flex: 1;
-                    `}
-                >
-                    <Dropdown
-                        keyName="name"
-                        data={genres}
-                        selectDropdownItem={filterMoviesByGenre}
-                    />
-                </div>
+                <Dropdown
+                    keyName="name"
+                    data={genres}
+                    selectDropdownItem={updateCurrentGenre}
+                />
             </div>
             <div>
                 {movies.length ? (

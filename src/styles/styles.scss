@@ -105,11 +105,11 @@ input[type='text'],
 // }
 
 .dropdown {
-    margin-left: 24px;
-    width: 180px;
+    margin: 0 24px;
     .dropdown-toggle {
         height: 40px;
         border: none;
+        text-align: left;
         background-color: hsl(209, 23%, 22%);
         &:hover {
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
