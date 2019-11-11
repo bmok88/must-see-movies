@@ -6,10 +6,6 @@ import { css, jsx } from '@emotion/core';
 
 import Poster from './Poster';
 
-const movieInfoStyle = css({
-    padding: '16px'
-});
-
 export interface MovieType {
     adult: boolean;
     backdrop_path: string;
@@ -31,21 +27,8 @@ const Movie: FunctionComponent<MovieType> = props => {
     const { id, poster_path, title } = props;
 
     return (
-        <Link
-            to={`/details/${id}`}
-            className="flex-display no-underline box-shadow"
-        >
+        <Link to={`/details/${id}`} className="no-underline">
             <Poster url={poster_path} alt={title} size="w154" />
-            {/* <div css={movieInfoStyle}>
-                <div
-                    css={css`
-                        font-size: 14px;
-                        font-weight: bold;
-                    `}
-                >
-                    {title}
-                </div>
-            </div> */}
         </Link>
     );
 };

@@ -28,7 +28,8 @@
     }
 }
 
-input[type='text'] {
+input[type='text'],
+.debounce-input {
     color: hsl(0, 0%, 52%);
     &:focus {
         outline: none;

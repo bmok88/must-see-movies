@@ -13,8 +13,9 @@ interface MovieList {
 
 const movieListStyle = css({
     display: 'grid',
-    gridGap: '40px',
-    gridTemplateColumns: 'repeat(4, 1fr)'
+    gridGap: '32px',
+    marginTop: '32px',
+    gridTemplateColumns: 'repeat(auto-fill, 154px)'
 });
 
 const MovieList: FunctionComponent<any> = () => {
@@ -30,7 +31,6 @@ const MovieList: FunctionComponent<any> = () => {
     };
 
     const searchMovies = async () => {
-        console.log(searchTerm);
         const api = `http://localhost:3000/search/movie/${searchTerm}`;
 
         const response = await fetch(api);
