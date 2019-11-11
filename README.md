@@ -5,17 +5,15 @@ research on the next movie they want to see.
 
 # Installation
 
-```npm i
-
-```
+`npmi`
 
 # Usage
 
-Type `npm run dev:client` to run the client on localhost:1234
+`npm run dev:client` to run the client
 
 Open localhost:1234 to view the client
 
-Type `npm run dev:server` to run the server on localhost:3000
+`npm run dev:server` to run the server on localhost:3000
 
 # Core features
 
