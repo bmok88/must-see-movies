@@ -95,7 +95,9 @@ class MovieDetails extends React.Component<
         } = this.state;
 
         if (loading) {
-            return <h1>Fetching movie details...</h1>;
+            return (
+                <h1 className="status-message">Fetching movie details...</h1>
+            );
         }
 
         return (
