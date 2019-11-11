@@ -2,7 +2,6 @@
 import { FunctionComponent } from 'react';
 import { Link } from '@reach/router';
 
-import styles from '../styles';
 import { css, jsx } from '@emotion/core';
 
 import Poster from './Poster';
@@ -28,15 +27,9 @@ const Movie: FunctionComponent<MovieType> = props => {
     const { id, poster_path, title } = props;
 
     return (
-        <Link to={`/details/${id}`} css={styles.Link}>
+        <Link to={`/details/${id}`} className="no-underline">
             <Poster url={poster_path} alt={title} size={'w185'} />
-            <div
-                css={css`
-                    text-decoration: none;
-                `}
-            >
-                <h1>{title}</h1>
-            </div>
+            <h4>{title}</h4>
         </Link>
     );
 };

@@ -5,6 +5,8 @@ import { Router, Link } from '@reach/router';
 import MovieList from './components/MovieList';
 import MovieDetails from './components/MovieDetails';
 
+import './styles/styles.scss';
+
 const App = () => {
     return (
         <div>
