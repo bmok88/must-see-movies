@@ -19,9 +19,9 @@ const SearchBar: FunctionComponent<any> = ({ updateSearchTerm }) => {
         <label
             htmlFor="movieName"
             css={searchBarContainer}
-            className="box-shadow"
+            className="box-shadow white-background"
         >
-            <i className="fas fa-search"></i>
+            <i className="fas fa-search dark-element"></i>
             <input
                 id="movieName"
                 type="text"

@@ -1,5 +1,9 @@
-* {
-    color: hsl(200, 15%, 8%);
+#root {
+    height: 100vh;
+    color: hsl(0, 0%, 100%);
+    font-size: 14px;
+    font-family: 'Istok Web', sans-serif;
+    background-color: hsl(207, 26%, 17%);
 }
 
 .box-shadow {
@@ -16,8 +20,10 @@
 }
 
 .no-underline {
+    color: inherit;
     text-decoration: none;
     &:hover {
+        color: inherit;
         text-decoration: none;
     }
 }
@@ -27,4 +33,61 @@ input[type='text'] {
     &:focus {
         outline: none;
     }
+}
+
+.flex {
+    display: flex;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.centered {
+    text-align: center;
+}
+
+.white-background {
+    background-color: hsl(0, 0%, 100%);
+}
+
+.white-text {
+    color: hsl(0, 0%, 100%);
+}
+
+.dark-background {
+    background-color: hsl(207, 26%, 17%);
+}
+
+.dark-text {
+    color: hsl(200, 15%, 8%);
+}
+
+.dark-element {
+    color: hsl(209, 23%, 22%);
+}
+
+.dark-element-background {
+    background-color: hsl(209, 23%, 22%);
+}
+
+.grey-text {
+    color: hsl(0, 0%, 69%);
+    padding-right: 4px;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.small-padding {
+    padding: 4px 0;
+}
+
+.medium-padding {
+    padding: 16px 0;
+}
+
+.invert-color {
+    filter: brightness(0) invert(1);
 }

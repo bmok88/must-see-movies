@@ -13,6 +13,7 @@ interface MovieList {
 
 const movieListStyle = css({
     display: 'grid',
+    gridGap: '40px',
     gridTemplateColumns: 'repeat(4, 1fr)'
 });
 
