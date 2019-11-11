@@ -33,9 +33,6 @@ const SearchBar: FunctionComponent<any> = ({ updateSearchTerm }) => {
                 onChange={e => updateSearchTerm(e.target.value)}
                 onBlur={e => updateSearchTerm(e.target.value)}
             />
-            {/* <input
-              
-            /> */}
         </label>
     );
 };

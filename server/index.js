@@ -42,6 +42,12 @@ app.get('/movie/details/:movieId', (req, res) => {
     makeGetRequest(url, res);
 });
 
+app.get('/genre', (req, res) => {
+    const url = `${api}${req.url}/movie/list${apiKey}`;
+
+    makeGetRequest(url, res);
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {

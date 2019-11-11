@@ -1,9 +1,11 @@
+body {
+    background-color: hsl(207, 26%, 17%);
+}
+
 #root {
-    height: 100vh;
     color: hsl(0, 0%, 100%);
     font-size: 14px;
     font-family: 'Istok Web', sans-serif;
-    background-color: hsl(207, 26%, 17%);
 }
 
 .box-shadow {
